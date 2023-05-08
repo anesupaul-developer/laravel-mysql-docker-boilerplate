@@ -4,46 +4,46 @@ networks:
     laravel-app-network-test:
 
 services:
-    mysql:
-        image: mariadb:10.4
-        container_name: mysqltest
-        restart: unless-stopped
-        tty: true
-        ports:
-            -  "3308:3306"
-        volumes:
-            - ./mysqltest:/var/lib/mysql
-        environment:
-            MYSQL_DATABASE: ${DB_DATABASE}
-            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-            MYSQL_PASSWORD: ${DB_PASSWORD}
-            MYSQL_USER: ${DB_USERNAME}
-            SERVICE_TAGS: dev
-            SERVICE_NAME: mysql
-        networks:
-            - laravel-app-network-test
+#    mysql:
+#        image: mariadb:10.4
+#        container_name: mysqltest
+#        restart: unless-stopped
+#        tty: true
+#        ports:
+#            -  "3308:3306"
+#        volumes:
+#            - ./mysqltest:/var/lib/mysql
+#        environment:
+#            MYSQL_DATABASE: ${DB_DATABASE}
+#            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+#            MYSQL_PASSWORD: ${DB_PASSWORD}
+#            MYSQL_USER: ${DB_USERNAME}
+#            SERVICE_TAGS: dev
+#            SERVICE_NAME: mysql
+#        networks:
+#            - laravel-app-network-test
     php:
         build:
             context: .
             dockerfile: ./php/Dockerfile
-        container_name: php81test
+        container_name: application_php81test
         ports:
             - "9000:9000"
         volumes:
-            -   ./src:/var/www/html
+            -   ../src:/var/www/html
         networks:
             - laravel-app-network-test
     nginx:
         image: nginx:1.17-alpine
-        container_name: nginxtest
+        container_name: application_nginxtest
         ports:
             - "8089:80"
             - "443:443"
         volumes:
-            - ./src:/var/www/html
+            - ../src:/var/www/html
             - ./nginx/default-test.conf:/etc/nginx/conf.d/default.conf
         depends_on:
             - php
-            - mysql
+#            - mysql
         networks:
             - laravel-app-network-test
