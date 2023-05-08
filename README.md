@@ -19,6 +19,8 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 
     - cd laravel-mysql-docker-boilerplate
 
+    - configure .env file and set mandatory fields DB_ROOT_PASSWORD, DB_DATABASE_TEST
+
     - make test
     # to run app in production run make prod. You can configure more environments inside Makefile
 
