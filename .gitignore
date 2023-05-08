@@ -2,3 +2,5 @@
 /.fleet
 /.idea
 /.vscode
+infrastructure/dbtest
+infrastructure/db
