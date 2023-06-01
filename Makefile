@@ -19,6 +19,6 @@ test:
 	docker exec -it application_php81test chmod -R 777 .
 	docker exec -it application_php81test composer install
 	docker exec -it application_php81test bash -c 'php artisan key:generate'
-	docker exec -it application_php81test bash -c 'php artisan migrate'
+	docker exec -it application_php81test bash -c 'php artisan migrate:refresh'
 	docker exec -it application_php81test bash -c 'php artisan db:seed'
 	docker exec -it application_php81test bash -c 'php artisan test'

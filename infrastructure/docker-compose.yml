@@ -25,7 +25,7 @@ services:
     php:
         build:
             args:
-                user: root
+                user: taylor
                 uid: 1000
             context: .
             dockerfile: ./php/Dockerfile

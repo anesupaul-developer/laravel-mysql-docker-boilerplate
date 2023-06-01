@@ -24,6 +24,9 @@ services:
             - laravel-app-network-test
     php:
         build:
+            args:
+                user: taylor
+                uid: 1000
             context: .
             dockerfile: ./php/Dockerfile
         container_name: application_php81test
